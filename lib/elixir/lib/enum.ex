@@ -2228,10 +2228,13 @@ defmodule Enum do
       iex> Enum.with_index [1, 2, 3]
       [{1, 0}, {2, 1}, {3, 2}]
 
+      iex> Enum.with_index(["a", "b", "c"], 1)
+      [{"a", 1}, {"b", 2}, {"c", 3}]
+
   """
-  @spec with_index(t) :: list({element, non_neg_integer})
-  def with_index(collection) do
-    map_reduce(collection, 0, fn x, acc ->
+  @spec with_index(t, integer) :: list({element, non_neg_integer})
+  def with_index(collection, start \\ 0) do
+    map_reduce(collection, start, fn x, acc ->
       {{x, acc}, acc + 1}
     end) |> elem(0)
   end

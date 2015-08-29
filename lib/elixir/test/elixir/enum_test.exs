@@ -1154,7 +1154,10 @@ defmodule EnumTest.Range do
 
   test "with index" do
     assert Enum.with_index(1..3) == [{1, 0}, {2, 1}, {3, 2}]
+
+    assert Enum.with_index(1..3, 1) == [{1, 1}, {2, 2}, {3, 3}]
   end
+
 end
 
 defmodule EnumTest.SideEffects do
